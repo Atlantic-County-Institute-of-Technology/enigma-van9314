@@ -1,17 +1,22 @@
 # enigma.py
 # description: a simple rotational ciphertext program that can create
 # custom encoded messages, as well as encode and decode from file.
-# author: YOUR_NAME_HERE
-# created: MM.DD.YYYY
-# last update:  MM.DD.YYYY
+# author: James Van
+# created: 11/18/24
+# last update:  11/18/24
 import random
 
 # we'll be using this string for the majority of our translations
 alphabet = "abcdefghijklmnopqrstuvwxyz"
 
 # user inputs a message and selects a key (or random), the message is then translated using the cipher
-def encode_message():
-    pass
+def encode_message(plain_text):
+    in_string = ""
+        for i in range(len(plain_text)):
+            ch = plain_text[i]
+
+
+
 
 # encodes a target file, similarly to encode_message, except now targeting a filename
 def encode_file():
@@ -40,7 +45,8 @@ def main():
         selection = input("Choose an option:")
 
         if selection == "1":
-            encode_message()
+            message = input("Enter a message to encode")
+            encode_message(message)
         elif selection == "2":
             encode_file()
         elif selection == "3":
