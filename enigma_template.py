@@ -3,19 +3,31 @@
 # custom encoded messages, as well as encode and decode from file.
 # author: James Van
 # created: 11/18/24
-# last update: 11/19/24
+# last update: 11/25/24
 import random
 
 # we'll be using this string for the majority of our translations
 alphabet = "abcdefghijklmnopqrstuvwxyz"
-
+print("Welcome to Project Enigma! This is a program that can encode and decode files/messages as you wish!")
 # user inputs a message and selects a key (or random), the message is then translated using the cipher
-def encode_message(plain_text):
-    plain_text = str(input("Enter a message to encode"))
+def encode_message(cipher_text, plain_text, key):
+    # use string translation to manipulate ciphertext
+    message = str(input("Enter a message to encode"))
+    key = random.randint(0, 1000)
+    plain_text = str(input("Please Enter a message to encode"))
     ciphertext = ""
-    for i in range(len(ciphertext)):
-        ch = ciphertext[i]
+    for alphabet in range(len(plain_text)):
+        alphabet = alphabet.lower()
+    if not alphabet == '':
+        alphabet = alphabet.find(alphabet)
+    if alphabet == -1:
+        cipher_text[i] += plain_text[i]
+    else:
+        return cipher_text
 
+
+def decrypt_message():
+    pass
 
 
 
@@ -35,43 +47,28 @@ def decode_unknown_key(filename):
 
 # main method declaration
 def main():
-    running = True
-    while running:
-        print(f"Welcome to the Enigma Machine!\n"
+    while True:
+        print(f"What would you like to do?\n"
               f"Please select an option:\n"
               f"[1]: Encode a custom message.\n"
-              f"[2]: Encode file.\n"
-              f"[3]: Decode file.\n"
-              f"[4]: Exit.")
+              f"[2]: Decode a custom message.\n"
+              f"[3]: Encode a file.\n"
+              f"[4]: Decode a file.\n"
+              f"[5]: Exit")
 
         selection = input("Choose an option:")
 
 
         if selection == "1":
             encode_message()
-            # in_string = input("Please Enter a String!")
-            # print(f"String is: {in_string}")
-            # out_string = ""
-            # for char in in_string:
-            #     if 65 <= ord(char) <= 90:
-            #         # uppercase to lower case
-            #         out_string += chr(ord(char) + 32)
-            #         # lowercase to uppercase
-            #     elif 97 <= ord(char) <= 122:
-            #         out_string += chr(ord(char) - 32)
-            #     else:
-            #         out_string += char
-
-            print(f"Final String is {out_string}")
         elif selection == "2":
-            encode_file()
+            decrypt_message()
         elif selection == "3":
-            decode_file()
+            encode_file()
         elif selection == "4":
-            print("Goodbye.")
-            exit()
-        # else:
-        #     print("Invalid choice. Please try again.")
+            decode_file()
+        elif selection == "5":
+            exit("EXITING THE PROGRAM")
 
 # runs on program start
 if __name__ == "__main__":
