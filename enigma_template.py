@@ -8,22 +8,23 @@ import random
 
 # we'll be using this string for the majority of our translations
 alphabet = "abcdefghijklmnopqrstuvwxyz"
-print("Welcome to Project Enigma! This is a program that can encode and decode files/messages as you wish!")
 # user inputs a message and selects a key (or random), the message is then translated using the cipher
-def encode_message(cipher_text, plain_text, key):
+def encode_message():
+    print("Welcome to Project Enigma! This is a program that can encode and decode files/messages as you wish!")
     # use string translation to manipulate ciphertext
-    message = str(input("Enter a message to encode"))
-    key = random.randint(0, 1000)
-    plain_text = str(input("Please Enter a message to encode"))
+    message = str(input("Enter a message to encode:"))
+    key = random.randint(1, 25)
     ciphertext = ""
-    for alphabet in range(len(plain_text)):
-        alphabet = alphabet.lower()
-    if not alphabet == '':
-        alphabet = alphabet.find(alphabet)
-    if alphabet == -1:
-        cipher_text[i] += plain_text[i]
+    message = message.lower()
+    for char in message:
+        if char in alphabet:
+            index = alphabet.find(char)
+            index = (index + key) % len(alphabet)
+            ciphertext += alphabet[index]
     else:
-        return cipher_text
+        alphabet += char
+    print(f"Encoded message is: {ciphertext}")
+    print("Key for encode: {key}")
 
 
 def decrypt_message():
