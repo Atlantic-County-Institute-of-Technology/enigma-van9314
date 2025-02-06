@@ -4,6 +4,7 @@
 # author: James Van
 # created: 11/18/24
 # last update: 2/5/25
+# imports random and sys
 import random
 import sys
 # we'll be using this string for the majority of our translations
@@ -13,13 +14,15 @@ def encode_message():
     # use string translation to manipulate ciphertext
     message = input("Enter a message to encode:").lower()
     key_input = input("Please input a key")
-    if key_input.strip() == "":
+    # generates a random key
+    if key_input.strip() == "": 
         key = random.randint(0, 25)
         print(f"Random Key generated {key}")
     else:
         key = int(key_input)
     encoded_message = ""
     for char in message:
+        # this only encodes letters
         if char in alphabet:
             index = (alphabet.index(char) + key) % len(alphabet)
             encoded_message += alphabet[index]
@@ -33,13 +36,13 @@ def encode_file():
     input_file = input("Enter the file name to encode: ")
     output_file = input("Enter the output file name: ")
     key_input = input("Please input the key (leave blank for random): ")
-
+    # this generates a random key incase none is provided
     if key_input.strip() == "":
         key = random.randint(0, 25)
         print(f"Random key generated: {key}")
     else:
         key = int(key_input)
-
+    # try and except for encoding file
     try:
         with open(input_file, "r") as infile, open(output_file, "w") as outfile:
             for line in infile:
@@ -50,7 +53,7 @@ def encode_file():
                         encoded_line += alphabet[index]
                     else:
                         encoded_line += char
-                outfile.write(encoded_line)
+                outfile.write(encoded_line) 
         print(f"File encoded successfully with key {key}. Output written to {output_file}.")
     except FileNotFoundError:
         print(f"Error: The file '{input_file}' was not found.")
@@ -82,6 +85,7 @@ def decode_unknown_key(filename):
     try:
         with open(filename,"r") as infile:
             content = infile.read()
+            # tries all possible keys from 0 to 25
             for key in range(len(alphabet)):
                 decoded_message = ""
                 for char in content.lower():
@@ -90,7 +94,8 @@ def decode_unknown_key(filename):
                         decoded_message += alphabet[index]
                     else: 
                         decoded_message += char
-                print(f"Key is {key}: {decoded_message}")
+                # prints the decoded message
+                print(f"Key is {key}: {decoded_message}") 
     except FileNotFoundError:
         print(f"Error: File {filename} was not found")
 
